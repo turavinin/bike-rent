@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Rent your bike
+      </div>
+      <div class="card-body">
+        <app-rent-form></app-rent-form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Your order
+      </div>
+      <div class="card-body">
+        <table class="table table-light table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th class="text-end">Final Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-success" *ngIf="rentService.rentModel.id != 0">
+              <td class="align-middle">{{rentService.rentModel.clientName}}</td>
+              <td>
+                <div class="align-middle" *ngFor="let detail of rentService.rentModel.rentDetails; let i = index">
+                  <p *ngIf="detail.idRate == 1" class="m-0">Rentals per hour: {{detail.totalRents}}<br></p>
+                  <p *ngIf="detail.idRate == 2" class="m-0">Rentals per day: {{detail.totalRents}}<br></p>
+                  <p *ngIf="detail.idRate == 3" class="m-0">Rentals per week: {{detail.totalRents}}<br></p>
+                </div>
+              </td>
+              <td class="align-middle text-end">${{rentService.rentModel.finalCost | number:'1.2'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+</div>
